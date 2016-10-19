@@ -1,0 +1,9 @@
+# emacs
+*#
+*~
+# project-specific
+dcc-auth
+dcc-metadata
+dcc-storage
+# intellij
+**/.idea
