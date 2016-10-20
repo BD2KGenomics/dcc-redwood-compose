@@ -7,3 +7,5 @@ dcc-metadata
 dcc-storage
 # intellij
 **/.idea
+# macos
+**/.DS_Store

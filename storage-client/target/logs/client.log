@@ -1,948 +1,0 @@
-2016-10-19 11:46:05.011  INFO 92192 --- [main] org.icgc.dcc.storage.client.ClientMain   : Starting ClientMain v1.0.14-SNAPSHOT on eduroam-169-233-205-161.ucsc.edu with PID 92192 (/Users/benjaminran/dev/ucsc-storage/storage-client/icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar started by benjaminran in /Users/benjaminran/dev/ucsc-storage/storage-client)
-2016-10-19 11:46:05.015  INFO 92192 --- [main] org.icgc.dcc.storage.client.ClientMain   : The following profiles are active: aws
-2016-10-19 11:46:05.047  INFO 92192 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@39fc7886: startup date [Wed Oct 19 11:46:05 PDT 2016]; root of context hierarchy
-2016-10-19 11:46:05.804  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-2016-10-19 11:46:05.807  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       : Command:  java -Djavax.net.ssl.trustStore=../conf/ssl/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dmetadata.url=https://storage.ucsc-cgl.org:8444 -Dmetadata.ssl.enabled=true -Dclient.ssl.custom=false -Dstorage.url=https://storage.ucsc-cgl.org:5431 -DaccessToken=7429d97a-9a7f-4225-b121-e36a130acb66 -jar icgc-storage-client.jar! ...
-2016-10-19 11:46:05.807  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       : Version:  1.0.14-SNAPSHOT
-2016-10-19 11:46:05.807  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       : Built:    1.0.14-SNAPSHOT
-2016-10-19 11:46:05.807  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       : SCM:
-2016-10-19 11:46:05.896  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.abbrev    : aefe684
-2016-10-19 11:46:05.896  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.email   : ayang99@gmail.com
-2016-10-19 11:46:05.896  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.full : initial check-in to get a beta build for integration testing; refactoâ¦ (#49)  * initial check-in to get a beta build for integration testing; refactoring still in progress  * update unit test  * check parameter - outputDir is mandatory only when --manifest is specified  * refactor out builder class  * updated TRIMMED output - fix header handling deactivated MERGED output - requires further thinking  * added unit test minor cleanup appease lombok overlords  * finished up session log config polishing (moved logback.xml to icgc-storage-client project) updated client shell script  * update copyright date  * minor cleanup  * update reference to logback.xml  * append @PG record with icgc-storage-client details update dependency to Spring Boot 1.3.3   - provides hook to access command line arguments   - dcc-storage-server updated to reflect changed class name in Spring Boot 1.3 update wrapper.conf   - increase timeout period for program termination   - do thread dump when JVM timeout occurs update dependency to logback-classic   - override old version specified in parent POM (required by Spring Boot 1.3)  * fixed use of proper file extension for output file (based on output format specified)  * handle stdout options  * update pom - project versioning, and specifying newer logback version  * merge latest. resolve conflicts  * fix merge conflicts. back out HostnameVerifier update  * fix client switch name  * Cleaned up X509 handling.  * Removed final deprecation. 
-2016-10-19 11:46:05.896  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id           : aefe68487cdb62e81b7f056da06f66dc1ab6f386
-2016-10-19 11:46:05.897  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.short: initial check-in to get a beta build for integration testing; refactoâ¦ (#49)
-2016-10-19 11:46:05.897  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.name    : Andy Yang
-2016-10-19 11:46:05.897  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.name     : Unknown
-2016-10-19 11:46:05.897  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.describe  : 1.0.13-8-gaefe684
-2016-10-19 11:46:05.897  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.email    : Unknown
-2016-10-19 11:46:05.897  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.branch              : develop
-2016-10-19 11:46:05.897  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.time         : 25.04.2016 @ 15:16:55 UTC
-2016-10-19 11:46:05.897  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.time          : 23.05.2016 @ 19:38:12 UTC
-2016-10-19 11:46:05.898  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          git.remote.origin.url   : https://github.com/BD2KGenomics/dcc-storage
-2016-10-19 11:46:05.898  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       : Profiles: [aws]
-2016-10-19 11:46:05.898  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       : StandardEnvironment {activeProfiles=[aws], defaultProfiles=[default], propertySources=[systemProperties,systemEnvironment,random,applicationConfig: [classpath:/application.yml]#aws,applicationConfig: [classpath:/application.yml]]}:
-2016-10-19 11:46:05.898  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          systemProperties:
-2016-10-19 11:46:05.902  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - LOG_FILE: target/logs/client.log
-2016-10-19 11:46:05.903  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - PID: 92192
-2016-10-19 11:46:05.903  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - accessToken: 7429d97a-9a7f-4225-b121-e36a130acb66
-2016-10-19 11:46:05.903  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - awt.toolkit: sun.lwawt.macosx.LWCToolkit
-2016-10-19 11:46:05.903  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: false
-2016-10-19 11:46:05.903  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: false
-2016-10-19 11:46:05.903  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 11:46:05.903  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding: UTF-8
-2016-10-19 11:46:05.903  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding.pkg: sun.io
-2016-10-19 11:46:05.904  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.separator: /
-2016-10-19 11:46:05.904  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - ftp.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 11:46:05.904  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - gopherProxySet: false
-2016-10-19 11:46:05.904  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - http.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 11:46:05.904  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.graphicsenv: sun.awt.CGraphicsEnvironment
-2016-10-19 11:46:05.904  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.headless: true
-2016-10-19 11:46:05.904  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.printerjob: sun.lwawt.macosx.CPrinterJob
-2016-10-19 11:46:05.904  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.path: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar
-2016-10-19 11:46:05.905  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.version: 52.0
-2016-10-19 11:46:05.905  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.endorsed.dirs: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/endorsed
-2016-10-19 11:46:05.905  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.ext.dirs: /Users/benjaminran/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
-2016-10-19 11:46:05.905  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.home: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre
-2016-10-19 11:46:05.905  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.io.tmpdir: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/
-2016-10-19 11:46:05.905  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.library.path: /Users/benjaminran/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
-2016-10-19 11:46:05.905  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.protocol.handler.pkgs: null|org.springframework.boot.loader
-2016-10-19 11:46:05.905  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.name: Java(TM) SE Runtime Environment
-2016-10-19 11:46:05.905  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.version: 1.8.0_77-b03
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.name: Java Platform API Specification
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.vendor: Oracle Corporation
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.version: 1.8
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor: Oracle Corporation
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url: http://java.oracle.com/
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url.bug: http://bugreport.sun.com/bugreport/
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.version: 1.8.0_77
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.info: mixed mode
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.name: Java HotSpot(TM) 64-Bit Server VM
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.name: Java Virtual Machine Specification
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.vendor: Oracle Corporation
-2016-10-19 11:46:05.906  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.version: 1.8
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.vendor: Oracle Corporation
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.version: 25.77-b03
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStore: ../conf/ssl/cacerts
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStorePassword: changeit
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - line.separator: 
-
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://storage.ucsc-cgl.org:8444
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - org.jboss.logging.provider: slf4j
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.arch: x86_64
-2016-10-19 11:46:05.907  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.name: Mac OS X
-2016-10-19 11:46:05.908  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.version: 10.12
-2016-10-19 11:46:05.908  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - path.separator: :
-2016-10-19 11:46:05.908  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - socksNonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 11:46:05.908  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.beaninfo.ignore: true
-2016-10-19 11:46:05.908  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.profile: aws
-2016-10-19 11:46:05.908  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://storage.ucsc-cgl.org:5431
-2016-10-19 11:46:05.908  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.arch.data.model: 64
-2016-10-19 11:46:05.908  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.class.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/classes
-2016-10-19 11:46:05.909  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.library.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib
-2016-10-19 11:46:05.909  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.endian: little
-2016-10-19 11:46:05.909  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.isalist: 
-2016-10-19 11:46:05.909  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.io.unicode.encoding: UnicodeBig
-2016-10-19 11:46:05.909  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.command: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar upload --manifest /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.eNN4mAMF/manifest/CAADEE37-F9E4-4445-AEBC-AC076D21C073/manifest.txt
-2016-10-19 11:46:05.909  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.launcher: SUN_STANDARD
-2016-10-19 11:46:05.909  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.jnu.encoding: UTF-8
-2016-10-19 11:46:05.909  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.management.compiler: HotSpot 64-Bit Tiered Compilers
-2016-10-19 11:46:05.909  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultConnectTimeout: 60000
-2016-10-19 11:46:05.910  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultReadTimeout: 60000
-2016-10-19 11:46:05.910  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.os.patch.level: unknown
-2016-10-19 11:46:05.911  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.country: US
-2016-10-19 11:46:05.911  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.dir: /Users/benjaminran/dev/ucsc-storage/storage-client
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.home: /Users/benjaminran
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.language: en
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.name: benjaminran
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.timezone: America/Los_Angeles
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]#aws:
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.profiles: aws
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://virginia.cloud.icgc.org
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]:
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.accessToken: ${accessToken}
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ansi: ${ansi:true}
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.connectTimeoutSeconds: 60
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: ${quiet:false}
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.readTimeoutSeconds: 60
-2016-10-19 11:46:05.912  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: ${silent:false}
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - logging.file: target/logs/client.log
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://meta.icgc.org
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - mount.logging: false
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - portal.url: https://dcc.icgc.org
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryNumber: 10
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryTimeout: 1
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: http://localhost:5431
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.fileFrom: memory
-2016-10-19 11:46:05.913  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.memory: 1
-2016-10-19 11:46:05.914  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.parallel: 6
-2016-10-19 11:46:05.914  INFO 92192 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-
-
-2016-10-19 11:46:05.946 ERROR 92192 --- [main] org.icgc.dcc.storage.client.ClientMain   : Bad parameter(s): 
-
-com.beust.jcommander.ParameterException: Invalid option: --manifest: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.eNN4mAMF/manifest/CAADEE37-F9E4-4445-AEBC-AC076D21C073/manifest.txt does not exist
-	at org.icgc.dcc.storage.client.cli.FileValidator.parameterException(FileValidator.java:40) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:32) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:27) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:285) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:275) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:242) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:209) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:875) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:857) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:725) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:791) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at org.icgc.dcc.storage.client.ClientMain.parseParams(ClientMain.java:172) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.ClientMain.run(ClientMain.java:129) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:806) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:790) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:777) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.icgc.dcc.storage.client.ClientMain.main(ClientMain.java:108) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_77]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_77]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_77]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_77]
-	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:54) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
-
-2016-10-19 11:46:05.949  INFO 92192 --- [Thread-2] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@39fc7886: startup date [Wed Oct 19 11:46:05 PDT 2016]; root of context hierarchy
-2016-10-19 11:56:25.361  INFO 92479 --- [main] org.icgc.dcc.storage.client.ClientMain   : Starting ClientMain v1.0.14-SNAPSHOT on eduroam-169-233-205-161.ucsc.edu with PID 92479 (/Users/benjaminran/dev/ucsc-storage/storage-client/icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar started by benjaminran in /Users/benjaminran/dev/ucsc-storage/storage-client)
-2016-10-19 11:56:25.365  INFO 92479 --- [main] org.icgc.dcc.storage.client.ClientMain   : The following profiles are active: aws
-2016-10-19 11:56:25.393  INFO 92479 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@543ec7b5: startup date [Wed Oct 19 11:56:25 PDT 2016]; root of context hierarchy
-2016-10-19 11:56:26.101  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-2016-10-19 11:56:26.103  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       : Command:  java -Djavax.net.ssl.trustStore=../conf/ssl/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dmetadata.url=https://storage.ucsc-cgl.org:8444 -Dmetadata.ssl.enabled=true -Dclient.ssl.custom=false -Dstorage.url=https://storage.ucsc-cgl.org:5431 -DaccessToken=7429d97a-9a7f-4225-b121-e36a130acb66 -jar icgc-storage-client.jar! ...
-2016-10-19 11:56:26.103  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       : Version:  1.0.14-SNAPSHOT
-2016-10-19 11:56:26.103  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       : Built:    1.0.14-SNAPSHOT
-2016-10-19 11:56:26.104  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       : SCM:
-2016-10-19 11:56:26.187  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.abbrev    : aefe684
-2016-10-19 11:56:26.187  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.email   : ayang99@gmail.com
-2016-10-19 11:56:26.188  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.full : initial check-in to get a beta build for integration testing; refactoâ¦ (#49)  * initial check-in to get a beta build for integration testing; refactoring still in progress  * update unit test  * check parameter - outputDir is mandatory only when --manifest is specified  * refactor out builder class  * updated TRIMMED output - fix header handling deactivated MERGED output - requires further thinking  * added unit test minor cleanup appease lombok overlords  * finished up session log config polishing (moved logback.xml to icgc-storage-client project) updated client shell script  * update copyright date  * minor cleanup  * update reference to logback.xml  * append @PG record with icgc-storage-client details update dependency to Spring Boot 1.3.3   - provides hook to access command line arguments   - dcc-storage-server updated to reflect changed class name in Spring Boot 1.3 update wrapper.conf   - increase timeout period for program termination   - do thread dump when JVM timeout occurs update dependency to logback-classic   - override old version specified in parent POM (required by Spring Boot 1.3)  * fixed use of proper file extension for output file (based on output format specified)  * handle stdout options  * update pom - project versioning, and specifying newer logback version  * merge latest. resolve conflicts  * fix merge conflicts. back out HostnameVerifier update  * fix client switch name  * Cleaned up X509 handling.  * Removed final deprecation. 
-2016-10-19 11:56:26.188  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id           : aefe68487cdb62e81b7f056da06f66dc1ab6f386
-2016-10-19 11:56:26.188  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.short: initial check-in to get a beta build for integration testing; refactoâ¦ (#49)
-2016-10-19 11:56:26.188  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.name    : Andy Yang
-2016-10-19 11:56:26.188  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.name     : Unknown
-2016-10-19 11:56:26.188  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.describe  : 1.0.13-8-gaefe684
-2016-10-19 11:56:26.189  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.email    : Unknown
-2016-10-19 11:56:26.189  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.branch              : develop
-2016-10-19 11:56:26.189  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.time         : 25.04.2016 @ 15:16:55 UTC
-2016-10-19 11:56:26.189  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.time          : 23.05.2016 @ 19:38:12 UTC
-2016-10-19 11:56:26.189  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          git.remote.origin.url   : https://github.com/BD2KGenomics/dcc-storage
-2016-10-19 11:56:26.189  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       : Profiles: [aws]
-2016-10-19 11:56:26.189  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       : StandardEnvironment {activeProfiles=[aws], defaultProfiles=[default], propertySources=[systemProperties,systemEnvironment,random,applicationConfig: [classpath:/application.yml]#aws,applicationConfig: [classpath:/application.yml]]}:
-2016-10-19 11:56:26.189  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          systemProperties:
-2016-10-19 11:56:26.193  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - LOG_FILE: target/logs/client.log
-2016-10-19 11:56:26.193  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - PID: 92479
-2016-10-19 11:56:26.193  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - accessToken: 7429d97a-9a7f-4225-b121-e36a130acb66
-2016-10-19 11:56:26.193  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - awt.toolkit: sun.lwawt.macosx.LWCToolkit
-2016-10-19 11:56:26.193  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: false
-2016-10-19 11:56:26.193  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: false
-2016-10-19 11:56:26.193  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 11:56:26.193  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding: UTF-8
-2016-10-19 11:56:26.194  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding.pkg: sun.io
-2016-10-19 11:56:26.194  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.separator: /
-2016-10-19 11:56:26.194  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - ftp.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 11:56:26.194  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - gopherProxySet: false
-2016-10-19 11:56:26.194  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - http.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 11:56:26.194  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.graphicsenv: sun.awt.CGraphicsEnvironment
-2016-10-19 11:56:26.194  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.headless: true
-2016-10-19 11:56:26.194  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.printerjob: sun.lwawt.macosx.CPrinterJob
-2016-10-19 11:56:26.194  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.path: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.version: 52.0
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.endorsed.dirs: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/endorsed
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.ext.dirs: /Users/benjaminran/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.home: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.io.tmpdir: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.library.path: /Users/benjaminran/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.protocol.handler.pkgs: null|org.springframework.boot.loader
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.name: Java(TM) SE Runtime Environment
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.version: 1.8.0_77-b03
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.name: Java Platform API Specification
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.vendor: Oracle Corporation
-2016-10-19 11:56:26.195  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.version: 1.8
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor: Oracle Corporation
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url: http://java.oracle.com/
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url.bug: http://bugreport.sun.com/bugreport/
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.version: 1.8.0_77
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.info: mixed mode
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.name: Java HotSpot(TM) 64-Bit Server VM
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.name: Java Virtual Machine Specification
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.vendor: Oracle Corporation
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.version: 1.8
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.vendor: Oracle Corporation
-2016-10-19 11:56:26.196  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.version: 25.77-b03
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStore: ../conf/ssl/cacerts
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStorePassword: changeit
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - line.separator: 
-
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://storage.ucsc-cgl.org:8444
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - org.jboss.logging.provider: slf4j
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.arch: x86_64
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.name: Mac OS X
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.version: 10.12
-2016-10-19 11:56:26.197  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - path.separator: :
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - socksNonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.beaninfo.ignore: true
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.profile: aws
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://storage.ucsc-cgl.org:5431
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.arch.data.model: 64
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.class.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/classes
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.library.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.endian: little
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.isalist: 
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.io.unicode.encoding: UnicodeBig
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.command: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar upload --manifest /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.u2xGSQlK/manifest/4132C256-3EDB-4886-81B1-95CF4E5A2C94/manifest.txt
-2016-10-19 11:56:26.198  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.launcher: SUN_STANDARD
-2016-10-19 11:56:26.199  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.jnu.encoding: UTF-8
-2016-10-19 11:56:26.199  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.management.compiler: HotSpot 64-Bit Tiered Compilers
-2016-10-19 11:56:26.199  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultConnectTimeout: 60000
-2016-10-19 11:56:26.199  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultReadTimeout: 60000
-2016-10-19 11:56:26.199  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.os.patch.level: unknown
-2016-10-19 11:56:26.199  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.country: US
-2016-10-19 11:56:26.201  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.dir: /Users/benjaminran/dev/ucsc-storage/storage-client
-2016-10-19 11:56:26.201  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.home: /Users/benjaminran
-2016-10-19 11:56:26.201  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.language: en
-2016-10-19 11:56:26.201  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.name: benjaminran
-2016-10-19 11:56:26.201  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.timezone: America/Los_Angeles
-2016-10-19 11:56:26.201  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]#aws:
-2016-10-19 11:56:26.201  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 11:56:26.201  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.profiles: aws
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://virginia.cloud.icgc.org
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]:
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.accessToken: ${accessToken}
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ansi: ${ansi:true}
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.connectTimeoutSeconds: 60
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: ${quiet:false}
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.readTimeoutSeconds: 60
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: ${silent:false}
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - logging.file: target/logs/client.log
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 11:56:26.202  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://meta.icgc.org
-2016-10-19 11:56:26.203  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - mount.logging: false
-2016-10-19 11:56:26.203  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - portal.url: https://dcc.icgc.org
-2016-10-19 11:56:26.203  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryNumber: 10
-2016-10-19 11:56:26.203  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryTimeout: 1
-2016-10-19 11:56:26.203  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: http://localhost:5431
-2016-10-19 11:56:26.203  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.fileFrom: memory
-2016-10-19 11:56:26.203  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.memory: 1
-2016-10-19 11:56:26.203  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.parallel: 6
-2016-10-19 11:56:26.203  INFO 92479 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-
-
-2016-10-19 11:56:26.235 ERROR 92479 --- [main] org.icgc.dcc.storage.client.ClientMain   : Bad parameter(s): 
-
-com.beust.jcommander.ParameterException: Invalid option: --manifest: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.u2xGSQlK/manifest/4132C256-3EDB-4886-81B1-95CF4E5A2C94/manifest.txt does not exist
-	at org.icgc.dcc.storage.client.cli.FileValidator.parameterException(FileValidator.java:40) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:32) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:27) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:285) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:275) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:242) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:209) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:875) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:857) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:725) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:791) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at org.icgc.dcc.storage.client.ClientMain.parseParams(ClientMain.java:172) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.ClientMain.run(ClientMain.java:129) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:806) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:790) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:777) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.icgc.dcc.storage.client.ClientMain.main(ClientMain.java:108) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_77]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_77]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_77]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_77]
-	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:54) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
-
-2016-10-19 11:56:26.238  INFO 92479 --- [Thread-2] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@543ec7b5: startup date [Wed Oct 19 11:56:25 PDT 2016]; root of context hierarchy
-2016-10-19 12:08:06.905  INFO 92739 --- [main] org.icgc.dcc.storage.client.ClientMain   : Starting ClientMain v1.0.14-SNAPSHOT on eduroam-169-233-205-161.ucsc.edu with PID 92739 (/Users/benjaminran/dev/ucsc-storage/storage-client/icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar started by benjaminran in /Users/benjaminran/dev/ucsc-storage/storage-client)
-2016-10-19 12:08:06.909  INFO 92739 --- [main] org.icgc.dcc.storage.client.ClientMain   : The following profiles are active: aws
-2016-10-19 12:08:06.938  INFO 92739 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7b634ef1: startup date [Wed Oct 19 12:08:06 PDT 2016]; root of context hierarchy
-2016-10-19 12:08:07.613  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-2016-10-19 12:08:07.614  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       : Command:  java -Djavax.net.ssl.trustStore=../conf/ssl/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dmetadata.url=https://storage.ucsc-cgl.org:8444 -Dmetadata.ssl.enabled=true -Dclient.ssl.custom=false -Dstorage.url=https://storage.ucsc-cgl.org:5431 -DaccessToken=7429d97a-9a7f-4225-b121-e36a130acb66 -jar icgc-storage-client.jar! ...
-2016-10-19 12:08:07.615  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       : Version:  1.0.14-SNAPSHOT
-2016-10-19 12:08:07.615  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       : Built:    1.0.14-SNAPSHOT
-2016-10-19 12:08:07.615  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       : SCM:
-2016-10-19 12:08:07.693  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.abbrev    : aefe684
-2016-10-19 12:08:07.693  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.email   : ayang99@gmail.com
-2016-10-19 12:08:07.694  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.full : initial check-in to get a beta build for integration testing; refactoâ¦ (#49)  * initial check-in to get a beta build for integration testing; refactoring still in progress  * update unit test  * check parameter - outputDir is mandatory only when --manifest is specified  * refactor out builder class  * updated TRIMMED output - fix header handling deactivated MERGED output - requires further thinking  * added unit test minor cleanup appease lombok overlords  * finished up session log config polishing (moved logback.xml to icgc-storage-client project) updated client shell script  * update copyright date  * minor cleanup  * update reference to logback.xml  * append @PG record with icgc-storage-client details update dependency to Spring Boot 1.3.3   - provides hook to access command line arguments   - dcc-storage-server updated to reflect changed class name in Spring Boot 1.3 update wrapper.conf   - increase timeout period for program termination   - do thread dump when JVM timeout occurs update dependency to logback-classic   - override old version specified in parent POM (required by Spring Boot 1.3)  * fixed use of proper file extension for output file (based on output format specified)  * handle stdout options  * update pom - project versioning, and specifying newer logback version  * merge latest. resolve conflicts  * fix merge conflicts. back out HostnameVerifier update  * fix client switch name  * Cleaned up X509 handling.  * Removed final deprecation. 
-2016-10-19 12:08:07.694  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id           : aefe68487cdb62e81b7f056da06f66dc1ab6f386
-2016-10-19 12:08:07.694  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.short: initial check-in to get a beta build for integration testing; refactoâ¦ (#49)
-2016-10-19 12:08:07.694  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.name    : Andy Yang
-2016-10-19 12:08:07.694  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.name     : Unknown
-2016-10-19 12:08:07.695  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.describe  : 1.0.13-8-gaefe684
-2016-10-19 12:08:07.695  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.email    : Unknown
-2016-10-19 12:08:07.695  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.branch              : develop
-2016-10-19 12:08:07.695  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.time         : 25.04.2016 @ 15:16:55 UTC
-2016-10-19 12:08:07.695  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.time          : 23.05.2016 @ 19:38:12 UTC
-2016-10-19 12:08:07.695  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          git.remote.origin.url   : https://github.com/BD2KGenomics/dcc-storage
-2016-10-19 12:08:07.695  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       : Profiles: [aws]
-2016-10-19 12:08:07.696  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       : StandardEnvironment {activeProfiles=[aws], defaultProfiles=[default], propertySources=[systemProperties,systemEnvironment,random,applicationConfig: [classpath:/application.yml]#aws,applicationConfig: [classpath:/application.yml]]}:
-2016-10-19 12:08:07.696  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          systemProperties:
-2016-10-19 12:08:07.700  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - LOG_FILE: target/logs/client.log
-2016-10-19 12:08:07.700  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - PID: 92739
-2016-10-19 12:08:07.700  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - accessToken: 7429d97a-9a7f-4225-b121-e36a130acb66
-2016-10-19 12:08:07.700  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - awt.toolkit: sun.lwawt.macosx.LWCToolkit
-2016-10-19 12:08:07.700  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: false
-2016-10-19 12:08:07.700  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: false
-2016-10-19 12:08:07.701  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:08:07.701  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding: UTF-8
-2016-10-19 12:08:07.701  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding.pkg: sun.io
-2016-10-19 12:08:07.701  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.separator: /
-2016-10-19 12:08:07.701  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - ftp.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:08:07.701  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - gopherProxySet: false
-2016-10-19 12:08:07.701  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - http.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:08:07.701  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.graphicsenv: sun.awt.CGraphicsEnvironment
-2016-10-19 12:08:07.701  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.headless: true
-2016-10-19 12:08:07.702  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.printerjob: sun.lwawt.macosx.CPrinterJob
-2016-10-19 12:08:07.702  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.path: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar
-2016-10-19 12:08:07.702  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.version: 52.0
-2016-10-19 12:08:07.702  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.endorsed.dirs: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/endorsed
-2016-10-19 12:08:07.702  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.ext.dirs: /Users/benjaminran/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
-2016-10-19 12:08:07.702  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.home: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre
-2016-10-19 12:08:07.702  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.io.tmpdir: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/
-2016-10-19 12:08:07.702  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.library.path: /Users/benjaminran/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.protocol.handler.pkgs: null|org.springframework.boot.loader
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.name: Java(TM) SE Runtime Environment
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.version: 1.8.0_77-b03
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.name: Java Platform API Specification
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.vendor: Oracle Corporation
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.version: 1.8
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor: Oracle Corporation
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url: http://java.oracle.com/
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url.bug: http://bugreport.sun.com/bugreport/
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.version: 1.8.0_77
-2016-10-19 12:08:07.703  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.info: mixed mode
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.name: Java HotSpot(TM) 64-Bit Server VM
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.name: Java Virtual Machine Specification
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.vendor: Oracle Corporation
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.version: 1.8
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.vendor: Oracle Corporation
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.version: 25.77-b03
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStore: ../conf/ssl/cacerts
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStorePassword: changeit
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - line.separator: 
-
-2016-10-19 12:08:07.704  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 12:08:07.705  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://storage.ucsc-cgl.org:8444
-2016-10-19 12:08:07.705  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - org.jboss.logging.provider: slf4j
-2016-10-19 12:08:07.705  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.arch: x86_64
-2016-10-19 12:08:07.705  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.name: Mac OS X
-2016-10-19 12:08:07.705  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.version: 10.12
-2016-10-19 12:08:07.705  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - path.separator: :
-2016-10-19 12:08:07.705  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - socksNonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:08:07.705  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.beaninfo.ignore: true
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.profile: aws
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://storage.ucsc-cgl.org:5431
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.arch.data.model: 64
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.class.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/classes
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.library.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.endian: little
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.isalist: 
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.io.unicode.encoding: UnicodeBig
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.command: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar upload --manifest /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.DrISavJ0/manifest/5001DF11-7752-464F-8A77-1BA662CAFDCC/manifest.txt
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.launcher: SUN_STANDARD
-2016-10-19 12:08:07.706  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.jnu.encoding: UTF-8
-2016-10-19 12:08:07.707  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.management.compiler: HotSpot 64-Bit Tiered Compilers
-2016-10-19 12:08:07.707  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultConnectTimeout: 60000
-2016-10-19 12:08:07.707  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultReadTimeout: 60000
-2016-10-19 12:08:07.707  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.os.patch.level: unknown
-2016-10-19 12:08:07.707  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.country: US
-2016-10-19 12:08:07.709  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.dir: /Users/benjaminran/dev/ucsc-storage/storage-client
-2016-10-19 12:08:07.709  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.home: /Users/benjaminran
-2016-10-19 12:08:07.709  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.language: en
-2016-10-19 12:08:07.709  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.name: benjaminran
-2016-10-19 12:08:07.709  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.timezone: America/Los_Angeles
-2016-10-19 12:08:07.709  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]#aws:
-2016-10-19 12:08:07.710  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:08:07.710  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.profiles: aws
-2016-10-19 12:08:07.710  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://virginia.cloud.icgc.org
-2016-10-19 12:08:07.710  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]:
-2016-10-19 12:08:07.710  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.accessToken: ${accessToken}
-2016-10-19 12:08:07.710  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ansi: ${ansi:true}
-2016-10-19 12:08:07.710  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.connectTimeoutSeconds: 60
-2016-10-19 12:08:07.710  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: ${quiet:false}
-2016-10-19 12:08:07.710  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.readTimeoutSeconds: 60
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: ${silent:false}
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - logging.file: target/logs/client.log
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://meta.icgc.org
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - mount.logging: false
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - portal.url: https://dcc.icgc.org
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryNumber: 10
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryTimeout: 1
-2016-10-19 12:08:07.711  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: http://localhost:5431
-2016-10-19 12:08:07.712  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.fileFrom: memory
-2016-10-19 12:08:07.712  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.memory: 1
-2016-10-19 12:08:07.712  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.parallel: 6
-2016-10-19 12:08:07.712  INFO 92739 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-
-
-2016-10-19 12:08:07.743 ERROR 92739 --- [main] org.icgc.dcc.storage.client.ClientMain   : Bad parameter(s): 
-
-com.beust.jcommander.ParameterException: Invalid option: --manifest: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.DrISavJ0/manifest/5001DF11-7752-464F-8A77-1BA662CAFDCC/manifest.txt does not exist
-	at org.icgc.dcc.storage.client.cli.FileValidator.parameterException(FileValidator.java:40) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:32) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:27) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:285) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:275) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:242) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:209) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:875) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:857) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:725) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:791) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at org.icgc.dcc.storage.client.ClientMain.parseParams(ClientMain.java:172) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.ClientMain.run(ClientMain.java:129) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:806) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:790) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:777) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.icgc.dcc.storage.client.ClientMain.main(ClientMain.java:108) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_77]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_77]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_77]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_77]
-	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:54) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
-
-2016-10-19 12:08:07.746  INFO 92739 --- [Thread-2] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@7b634ef1: startup date [Wed Oct 19 12:08:06 PDT 2016]; root of context hierarchy
-2016-10-19 12:08:24.593  INFO 92825 --- [main] org.icgc.dcc.storage.client.ClientMain   : Starting ClientMain v1.0.14-SNAPSHOT on eduroam-169-233-205-161.ucsc.edu with PID 92825 (/Users/benjaminran/dev/ucsc-storage/storage-client/icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar started by benjaminran in /Users/benjaminran/dev/ucsc-storage/storage-client)
-2016-10-19 12:08:24.597  INFO 92825 --- [main] org.icgc.dcc.storage.client.ClientMain   : The following profiles are active: aws
-2016-10-19 12:08:24.625  INFO 92825 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@543ec7b5: startup date [Wed Oct 19 12:08:24 PDT 2016]; root of context hierarchy
-2016-10-19 12:08:25.310  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-2016-10-19 12:08:25.312  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       : Command:  java -Djavax.net.ssl.trustStore=../conf/ssl/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dmetadata.url=https://storage.ucsc-cgl.org2:8444 -Dmetadata.ssl.enabled=true -Dclient.ssl.custom=false -Dstorage.url=https://storage.ucsc-cgl.org:5431 -DaccessToken=7429d97a-9a7f-4225-b121-e36a130acb66 -jar icgc-storage-client.jar! ...
-2016-10-19 12:08:25.312  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       : Version:  1.0.14-SNAPSHOT
-2016-10-19 12:08:25.312  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       : Built:    1.0.14-SNAPSHOT
-2016-10-19 12:08:25.313  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       : SCM:
-2016-10-19 12:08:25.395  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.abbrev    : aefe684
-2016-10-19 12:08:25.395  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.email   : ayang99@gmail.com
-2016-10-19 12:08:25.395  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.full : initial check-in to get a beta build for integration testing; refactoâ¦ (#49)  * initial check-in to get a beta build for integration testing; refactoring still in progress  * update unit test  * check parameter - outputDir is mandatory only when --manifest is specified  * refactor out builder class  * updated TRIMMED output - fix header handling deactivated MERGED output - requires further thinking  * added unit test minor cleanup appease lombok overlords  * finished up session log config polishing (moved logback.xml to icgc-storage-client project) updated client shell script  * update copyright date  * minor cleanup  * update reference to logback.xml  * append @PG record with icgc-storage-client details update dependency to Spring Boot 1.3.3   - provides hook to access command line arguments   - dcc-storage-server updated to reflect changed class name in Spring Boot 1.3 update wrapper.conf   - increase timeout period for program termination   - do thread dump when JVM timeout occurs update dependency to logback-classic   - override old version specified in parent POM (required by Spring Boot 1.3)  * fixed use of proper file extension for output file (based on output format specified)  * handle stdout options  * update pom - project versioning, and specifying newer logback version  * merge latest. resolve conflicts  * fix merge conflicts. back out HostnameVerifier update  * fix client switch name  * Cleaned up X509 handling.  * Removed final deprecation. 
-2016-10-19 12:08:25.395  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id           : aefe68487cdb62e81b7f056da06f66dc1ab6f386
-2016-10-19 12:08:25.396  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.short: initial check-in to get a beta build for integration testing; refactoâ¦ (#49)
-2016-10-19 12:08:25.396  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.name    : Andy Yang
-2016-10-19 12:08:25.396  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.name     : Unknown
-2016-10-19 12:08:25.396  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.describe  : 1.0.13-8-gaefe684
-2016-10-19 12:08:25.396  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.email    : Unknown
-2016-10-19 12:08:25.396  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.branch              : develop
-2016-10-19 12:08:25.396  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.time         : 25.04.2016 @ 15:16:55 UTC
-2016-10-19 12:08:25.396  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.time          : 23.05.2016 @ 19:38:12 UTC
-2016-10-19 12:08:25.396  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          git.remote.origin.url   : https://github.com/BD2KGenomics/dcc-storage
-2016-10-19 12:08:25.397  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       : Profiles: [aws]
-2016-10-19 12:08:25.397  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       : StandardEnvironment {activeProfiles=[aws], defaultProfiles=[default], propertySources=[systemProperties,systemEnvironment,random,applicationConfig: [classpath:/application.yml]#aws,applicationConfig: [classpath:/application.yml]]}:
-2016-10-19 12:08:25.397  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          systemProperties:
-2016-10-19 12:08:25.401  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - LOG_FILE: target/logs/client.log
-2016-10-19 12:08:25.401  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - PID: 92825
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - accessToken: 7429d97a-9a7f-4225-b121-e36a130acb66
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - awt.toolkit: sun.lwawt.macosx.LWCToolkit
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: false
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: false
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding: UTF-8
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding.pkg: sun.io
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.separator: /
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - ftp.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - gopherProxySet: false
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - http.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.graphicsenv: sun.awt.CGraphicsEnvironment
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.headless: true
-2016-10-19 12:08:25.402  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.printerjob: sun.lwawt.macosx.CPrinterJob
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.path: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.version: 52.0
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.endorsed.dirs: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/endorsed
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.ext.dirs: /Users/benjaminran/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.home: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.io.tmpdir: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.library.path: /Users/benjaminran/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.protocol.handler.pkgs: null|org.springframework.boot.loader
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.name: Java(TM) SE Runtime Environment
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.version: 1.8.0_77-b03
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.name: Java Platform API Specification
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.vendor: Oracle Corporation
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.version: 1.8
-2016-10-19 12:08:25.403  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor: Oracle Corporation
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url: http://java.oracle.com/
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url.bug: http://bugreport.sun.com/bugreport/
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.version: 1.8.0_77
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.info: mixed mode
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.name: Java HotSpot(TM) 64-Bit Server VM
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.name: Java Virtual Machine Specification
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.vendor: Oracle Corporation
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.version: 1.8
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.vendor: Oracle Corporation
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.version: 25.77-b03
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStore: ../conf/ssl/cacerts
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStorePassword: changeit
-2016-10-19 12:08:25.404  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - line.separator: 
-
-2016-10-19 12:08:25.405  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 12:08:25.405  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://storage.ucsc-cgl.org2:8444
-2016-10-19 12:08:25.405  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - org.jboss.logging.provider: slf4j
-2016-10-19 12:08:25.405  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.arch: x86_64
-2016-10-19 12:08:25.405  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.name: Mac OS X
-2016-10-19 12:08:25.406  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.version: 10.12
-2016-10-19 12:08:25.406  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - path.separator: :
-2016-10-19 12:08:25.406  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - socksNonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:08:25.406  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.beaninfo.ignore: true
-2016-10-19 12:08:25.406  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.profile: aws
-2016-10-19 12:08:25.406  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://storage.ucsc-cgl.org:5431
-2016-10-19 12:08:25.406  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.arch.data.model: 64
-2016-10-19 12:08:25.406  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.class.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/classes
-2016-10-19 12:08:25.406  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.library.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.endian: little
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.isalist: 
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.io.unicode.encoding: UnicodeBig
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.command: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar upload --manifest /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.SjZ2tWhx/manifest/B55BB971-00C6-4909-A070-420023FF339B/manifest.txt
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.launcher: SUN_STANDARD
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.jnu.encoding: UTF-8
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.management.compiler: HotSpot 64-Bit Tiered Compilers
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultConnectTimeout: 60000
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultReadTimeout: 60000
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.os.patch.level: unknown
-2016-10-19 12:08:25.407  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.country: US
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.dir: /Users/benjaminran/dev/ucsc-storage/storage-client
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.home: /Users/benjaminran
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.language: en
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.name: benjaminran
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.timezone: America/Los_Angeles
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]#aws:
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.profiles: aws
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://virginia.cloud.icgc.org
-2016-10-19 12:08:25.408  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]:
-2016-10-19 12:08:25.409  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.accessToken: ${accessToken}
-2016-10-19 12:08:25.409  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ansi: ${ansi:true}
-2016-10-19 12:08:25.409  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.connectTimeoutSeconds: 60
-2016-10-19 12:08:25.409  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: ${quiet:false}
-2016-10-19 12:08:25.409  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.readTimeoutSeconds: 60
-2016-10-19 12:08:25.409  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: ${silent:false}
-2016-10-19 12:08:25.409  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:08:25.409  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - logging.file: target/logs/client.log
-2016-10-19 12:08:25.409  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://meta.icgc.org
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - mount.logging: false
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - portal.url: https://dcc.icgc.org
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryNumber: 10
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryTimeout: 1
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: http://localhost:5431
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.fileFrom: memory
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.memory: 1
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.parallel: 6
-2016-10-19 12:08:25.410  INFO 92825 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-
-
-2016-10-19 12:08:25.440 ERROR 92825 --- [main] org.icgc.dcc.storage.client.ClientMain   : Bad parameter(s): 
-
-com.beust.jcommander.ParameterException: Invalid option: --manifest: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.SjZ2tWhx/manifest/B55BB971-00C6-4909-A070-420023FF339B/manifest.txt does not exist
-	at org.icgc.dcc.storage.client.cli.FileValidator.parameterException(FileValidator.java:40) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:32) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:27) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:285) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:275) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:242) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:209) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:875) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:857) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:725) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:791) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at org.icgc.dcc.storage.client.ClientMain.parseParams(ClientMain.java:172) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.ClientMain.run(ClientMain.java:129) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:806) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:790) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:777) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.icgc.dcc.storage.client.ClientMain.main(ClientMain.java:108) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_77]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_77]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_77]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_77]
-	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:54) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
-
-2016-10-19 12:08:25.444  INFO 92825 --- [Thread-2] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@543ec7b5: startup date [Wed Oct 19 12:08:24 PDT 2016]; root of context hierarchy
-2016-10-19 12:08:46.505  INFO 92911 --- [main] org.icgc.dcc.storage.client.ClientMain   : Starting ClientMain v1.0.14-SNAPSHOT on eduroam-169-233-205-161.ucsc.edu with PID 92911 (/Users/benjaminran/dev/ucsc-storage/storage-client/icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar started by benjaminran in /Users/benjaminran/dev/ucsc-storage/storage-client)
-2016-10-19 12:08:46.509  INFO 92911 --- [main] org.icgc.dcc.storage.client.ClientMain   : The following profiles are active: aws
-2016-10-19 12:08:46.537  INFO 92911 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@44b6836f: startup date [Wed Oct 19 12:08:46 PDT 2016]; root of context hierarchy
-2016-10-19 12:08:47.227  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-2016-10-19 12:08:47.229  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       : Command:  java -Djavax.net.ssl.trustStore=../conf/ssl/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dmetadata.url=https://storage.ucsc-cgl.org:8444 -Dmetadata.ssl.enabled=true -Dclient.ssl.custom=false -Dstorage.url=https://storage.ucsc-cgl.org:5431 -DaccessToken=7429d97a-9a7f-4225-b121-e36a130acb66 -jar icgc-storage-client.jar! ...
-2016-10-19 12:08:47.229  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       : Version:  1.0.14-SNAPSHOT
-2016-10-19 12:08:47.229  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       : Built:    1.0.14-SNAPSHOT
-2016-10-19 12:08:47.229  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       : SCM:
-2016-10-19 12:08:47.310  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.abbrev    : aefe684
-2016-10-19 12:08:47.311  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.email   : ayang99@gmail.com
-2016-10-19 12:08:47.311  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.full : initial check-in to get a beta build for integration testing; refactoâ¦ (#49)  * initial check-in to get a beta build for integration testing; refactoring still in progress  * update unit test  * check parameter - outputDir is mandatory only when --manifest is specified  * refactor out builder class  * updated TRIMMED output - fix header handling deactivated MERGED output - requires further thinking  * added unit test minor cleanup appease lombok overlords  * finished up session log config polishing (moved logback.xml to icgc-storage-client project) updated client shell script  * update copyright date  * minor cleanup  * update reference to logback.xml  * append @PG record with icgc-storage-client details update dependency to Spring Boot 1.3.3   - provides hook to access command line arguments   - dcc-storage-server updated to reflect changed class name in Spring Boot 1.3 update wrapper.conf   - increase timeout period for program termination   - do thread dump when JVM timeout occurs update dependency to logback-classic   - override old version specified in parent POM (required by Spring Boot 1.3)  * fixed use of proper file extension for output file (based on output format specified)  * handle stdout options  * update pom - project versioning, and specifying newer logback version  * merge latest. resolve conflicts  * fix merge conflicts. back out HostnameVerifier update  * fix client switch name  * Cleaned up X509 handling.  * Removed final deprecation. 
-2016-10-19 12:08:47.311  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id           : aefe68487cdb62e81b7f056da06f66dc1ab6f386
-2016-10-19 12:08:47.311  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.short: initial check-in to get a beta build for integration testing; refactoâ¦ (#49)
-2016-10-19 12:08:47.312  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.name    : Andy Yang
-2016-10-19 12:08:47.312  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.name     : Unknown
-2016-10-19 12:08:47.312  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.describe  : 1.0.13-8-gaefe684
-2016-10-19 12:08:47.312  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.email    : Unknown
-2016-10-19 12:08:47.312  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.branch              : develop
-2016-10-19 12:08:47.313  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.time         : 25.04.2016 @ 15:16:55 UTC
-2016-10-19 12:08:47.313  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.time          : 23.05.2016 @ 19:38:12 UTC
-2016-10-19 12:08:47.313  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          git.remote.origin.url   : https://github.com/BD2KGenomics/dcc-storage
-2016-10-19 12:08:47.313  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       : Profiles: [aws]
-2016-10-19 12:08:47.313  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       : StandardEnvironment {activeProfiles=[aws], defaultProfiles=[default], propertySources=[systemProperties,systemEnvironment,random,applicationConfig: [classpath:/application.yml]#aws,applicationConfig: [classpath:/application.yml]]}:
-2016-10-19 12:08:47.314  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          systemProperties:
-2016-10-19 12:08:47.318  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - LOG_FILE: target/logs/client.log
-2016-10-19 12:08:47.318  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - PID: 92911
-2016-10-19 12:08:47.318  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - accessToken: 7429d97a-9a7f-4225-b121-e36a130acb66
-2016-10-19 12:08:47.318  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - awt.toolkit: sun.lwawt.macosx.LWCToolkit
-2016-10-19 12:08:47.318  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: false
-2016-10-19 12:08:47.318  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: false
-2016-10-19 12:08:47.318  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:08:47.318  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding: UTF-8
-2016-10-19 12:08:47.318  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding.pkg: sun.io
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.separator: /
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - ftp.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - gopherProxySet: false
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - http.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.graphicsenv: sun.awt.CGraphicsEnvironment
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.headless: true
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.printerjob: sun.lwawt.macosx.CPrinterJob
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.path: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.version: 52.0
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.endorsed.dirs: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/endorsed
-2016-10-19 12:08:47.319  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.ext.dirs: /Users/benjaminran/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.home: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.io.tmpdir: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.library.path: /Users/benjaminran/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.protocol.handler.pkgs: null|org.springframework.boot.loader
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.name: Java(TM) SE Runtime Environment
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.version: 1.8.0_77-b03
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.name: Java Platform API Specification
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.vendor: Oracle Corporation
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.version: 1.8
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor: Oracle Corporation
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url: http://java.oracle.com/
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url.bug: http://bugreport.sun.com/bugreport/
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.version: 1.8.0_77
-2016-10-19 12:08:47.320  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.info: mixed mode
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.name: Java HotSpot(TM) 64-Bit Server VM
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.name: Java Virtual Machine Specification
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.vendor: Oracle Corporation
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.version: 1.8
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.vendor: Oracle Corporation
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.version: 25.77-b03
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStore: ../conf/ssl/cacerts
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStorePassword: changeit
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - line.separator: 
-
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 12:08:47.321  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://storage.ucsc-cgl.org:8444
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - org.jboss.logging.provider: slf4j
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.arch: x86_64
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.name: Mac OS X
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.version: 10.12
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - path.separator: :
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - socksNonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.beaninfo.ignore: true
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.profile: aws
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://storage.ucsc-cgl.org:5431
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.arch.data.model: 64
-2016-10-19 12:08:47.322  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.class.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/classes
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.library.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.endian: little
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.isalist: 
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.io.unicode.encoding: UnicodeBig
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.command: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar upload --manifest /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.02sgUvtw/manifest/A16CADA9-F684-4390-9891-0C04E98B2F18/manifest.txt
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.launcher: SUN_STANDARD
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.jnu.encoding: UTF-8
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.management.compiler: HotSpot 64-Bit Tiered Compilers
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultConnectTimeout: 60000
-2016-10-19 12:08:47.323  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultReadTimeout: 60000
-2016-10-19 12:08:47.324  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.os.patch.level: unknown
-2016-10-19 12:08:47.324  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.country: US
-2016-10-19 12:08:47.325  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.dir: /Users/benjaminran/dev/ucsc-storage/storage-client
-2016-10-19 12:08:47.326  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.home: /Users/benjaminran
-2016-10-19 12:08:47.326  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.language: en
-2016-10-19 12:08:47.326  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.name: benjaminran
-2016-10-19 12:08:47.326  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.timezone: America/Los_Angeles
-2016-10-19 12:08:47.326  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]#aws:
-2016-10-19 12:08:47.326  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:08:47.326  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.profiles: aws
-2016-10-19 12:08:47.326  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://virginia.cloud.icgc.org
-2016-10-19 12:08:47.326  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]:
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.accessToken: ${accessToken}
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ansi: ${ansi:true}
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.connectTimeoutSeconds: 60
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: ${quiet:false}
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.readTimeoutSeconds: 60
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: ${silent:false}
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - logging.file: target/logs/client.log
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 12:08:47.327  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://meta.icgc.org
-2016-10-19 12:08:47.328  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - mount.logging: false
-2016-10-19 12:08:47.328  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - portal.url: https://dcc.icgc.org
-2016-10-19 12:08:47.328  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryNumber: 10
-2016-10-19 12:08:47.328  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryTimeout: 1
-2016-10-19 12:08:47.328  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: http://localhost:5431
-2016-10-19 12:08:47.328  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.fileFrom: memory
-2016-10-19 12:08:47.328  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.memory: 1
-2016-10-19 12:08:47.328  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.parallel: 6
-2016-10-19 12:08:47.328  INFO 92911 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-
-
-2016-10-19 12:08:47.360 ERROR 92911 --- [main] org.icgc.dcc.storage.client.ClientMain   : Bad parameter(s): 
-
-com.beust.jcommander.ParameterException: Invalid option: --manifest: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.02sgUvtw/manifest/A16CADA9-F684-4390-9891-0C04E98B2F18/manifest.txt does not exist
-	at org.icgc.dcc.storage.client.cli.FileValidator.parameterException(FileValidator.java:40) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:32) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:27) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:285) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:275) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:242) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:209) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:875) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:857) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:725) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:791) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at org.icgc.dcc.storage.client.ClientMain.parseParams(ClientMain.java:172) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.ClientMain.run(ClientMain.java:129) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:806) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:790) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:777) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.icgc.dcc.storage.client.ClientMain.main(ClientMain.java:108) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_77]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_77]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_77]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_77]
-	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:54) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
-
-2016-10-19 12:08:47.363  INFO 92911 --- [Thread-2] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@44b6836f: startup date [Wed Oct 19 12:08:46 PDT 2016]; root of context hierarchy
-2016-10-19 12:16:11.366  INFO 93026 --- [main] org.icgc.dcc.storage.client.ClientMain   : Starting ClientMain v1.0.14-SNAPSHOT on eduroam-169-233-205-161.ucsc.edu with PID 93026 (/Users/benjaminran/dev/ucsc-storage/storage-client/icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar started by benjaminran in /Users/benjaminran/dev/ucsc-storage/storage-client)
-2016-10-19 12:16:11.370  INFO 93026 --- [main] org.icgc.dcc.storage.client.ClientMain   : The following profiles are active: aws
-2016-10-19 12:16:11.398  INFO 93026 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@543ec7b5: startup date [Wed Oct 19 12:16:11 PDT 2016]; root of context hierarchy
-2016-10-19 12:16:12.118  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-2016-10-19 12:16:12.120  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       : Command:  java -Djavax.net.ssl.trustStore=../conf/ssl/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dmetadata.url=https://storage.ucsc-cgl.org:8444 -Dmetadata.ssl.enabled=true -Dclient.ssl.custom=false -Dstorage.url=https://storage.ucsc-cgl.org:5431 -DaccessToken=7429d97a-9a7f-4225-b121-e36a130acb66 -jar icgc-storage-client.jar! ...
-2016-10-19 12:16:12.121  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       : Version:  1.0.14-SNAPSHOT
-2016-10-19 12:16:12.121  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       : Built:    1.0.14-SNAPSHOT
-2016-10-19 12:16:12.121  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       : SCM:
-2016-10-19 12:16:12.204  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.abbrev    : aefe684
-2016-10-19 12:16:12.204  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.email   : ayang99@gmail.com
-2016-10-19 12:16:12.204  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.full : initial check-in to get a beta build for integration testing; refactoâ¦ (#49)  * initial check-in to get a beta build for integration testing; refactoring still in progress  * update unit test  * check parameter - outputDir is mandatory only when --manifest is specified  * refactor out builder class  * updated TRIMMED output - fix header handling deactivated MERGED output - requires further thinking  * added unit test minor cleanup appease lombok overlords  * finished up session log config polishing (moved logback.xml to icgc-storage-client project) updated client shell script  * update copyright date  * minor cleanup  * update reference to logback.xml  * append @PG record with icgc-storage-client details update dependency to Spring Boot 1.3.3   - provides hook to access command line arguments   - dcc-storage-server updated to reflect changed class name in Spring Boot 1.3 update wrapper.conf   - increase timeout period for program termination   - do thread dump when JVM timeout occurs update dependency to logback-classic   - override old version specified in parent POM (required by Spring Boot 1.3)  * fixed use of proper file extension for output file (based on output format specified)  * handle stdout options  * update pom - project versioning, and specifying newer logback version  * merge latest. resolve conflicts  * fix merge conflicts. back out HostnameVerifier update  * fix client switch name  * Cleaned up X509 handling.  * Removed final deprecation. 
-2016-10-19 12:16:12.204  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id           : aefe68487cdb62e81b7f056da06f66dc1ab6f386
-2016-10-19 12:16:12.205  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.message.short: initial check-in to get a beta build for integration testing; refactoâ¦ (#49)
-2016-10-19 12:16:12.205  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.user.name    : Andy Yang
-2016-10-19 12:16:12.205  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.name     : Unknown
-2016-10-19 12:16:12.205  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.id.describe  : 1.0.13-8-gaefe684
-2016-10-19 12:16:12.205  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.user.email    : Unknown
-2016-10-19 12:16:12.205  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.branch              : develop
-2016-10-19 12:16:12.205  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.commit.time         : 25.04.2016 @ 15:16:55 UTC
-2016-10-19 12:16:12.205  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.build.time          : 23.05.2016 @ 19:38:12 UTC
-2016-10-19 12:16:12.206  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          git.remote.origin.url   : https://github.com/BD2KGenomics/dcc-storage
-2016-10-19 12:16:12.206  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       : Profiles: [aws]
-2016-10-19 12:16:12.206  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       : StandardEnvironment {activeProfiles=[aws], defaultProfiles=[default], propertySources=[systemProperties,systemEnvironment,random,applicationConfig: [classpath:/application.yml]#aws,applicationConfig: [classpath:/application.yml]]}:
-2016-10-19 12:16:12.206  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          systemProperties:
-2016-10-19 12:16:12.210  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - LOG_FILE: target/logs/client.log
-2016-10-19 12:16:12.210  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - PID: 93026
-2016-10-19 12:16:12.210  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - accessToken: 7429d97a-9a7f-4225-b121-e36a130acb66
-2016-10-19 12:16:12.210  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - awt.toolkit: sun.lwawt.macosx.LWCToolkit
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: false
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: false
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding: UTF-8
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.encoding.pkg: sun.io
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - file.separator: /
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - ftp.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - gopherProxySet: false
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - http.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.graphicsenv: sun.awt.CGraphicsEnvironment
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.headless: true
-2016-10-19 12:16:12.211  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.awt.printerjob: sun.lwawt.macosx.CPrinterJob
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.path: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.class.version: 52.0
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.endorsed.dirs: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/endorsed
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.ext.dirs: /Users/benjaminran/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.home: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.io.tmpdir: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.library.path: /Users/benjaminran/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.protocol.handler.pkgs: null|org.springframework.boot.loader
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.name: Java(TM) SE Runtime Environment
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.runtime.version: 1.8.0_77-b03
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.name: Java Platform API Specification
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.vendor: Oracle Corporation
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.specification.version: 1.8
-2016-10-19 12:16:12.212  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor: Oracle Corporation
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url: http://java.oracle.com/
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vendor.url.bug: http://bugreport.sun.com/bugreport/
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.version: 1.8.0_77
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.info: mixed mode
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.name: Java HotSpot(TM) 64-Bit Server VM
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.name: Java Virtual Machine Specification
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.vendor: Oracle Corporation
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.specification.version: 1.8
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.vendor: Oracle Corporation
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - java.vm.version: 25.77-b03
-2016-10-19 12:16:12.213  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStore: ../conf/ssl/cacerts
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - javax.net.ssl.trustStorePassword: changeit
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - line.separator: 
-
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://storage.ucsc-cgl.org:8444
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - org.jboss.logging.provider: slf4j
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.arch: x86_64
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.name: Mac OS X
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - os.version: 10.12
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - path.separator: :
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - socksNonProxyHosts: local|*.local|169.254/16|*.169.254/16
-2016-10-19 12:16:12.214  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.beaninfo.ignore: true
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.profile: aws
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://storage.ucsc-cgl.org:5431
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.arch.data.model: 64
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.class.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/classes
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.boot.library.path: /Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/jre/lib
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.endian: little
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.cpu.isalist: 
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.io.unicode.encoding: UnicodeBig
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.command: icgc-storage-client-1.0.14-SNAPSHOT/lib/icgc-storage-client.jar upload --manifest /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.aKiRa1sS/manifest/B0A2363D-08C1-4FE6-9CC7-BED21C99EAC7/manifest.txt
-2016-10-19 12:16:12.215  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.java.launcher: SUN_STANDARD
-2016-10-19 12:16:12.216  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.jnu.encoding: UTF-8
-2016-10-19 12:16:12.216  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.management.compiler: HotSpot 64-Bit Tiered Compilers
-2016-10-19 12:16:12.216  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultConnectTimeout: 60000
-2016-10-19 12:16:12.216  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.net.client.defaultReadTimeout: 60000
-2016-10-19 12:16:12.216  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - sun.os.patch.level: unknown
-2016-10-19 12:16:12.216  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.country: US
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.dir: /Users/benjaminran/dev/ucsc-storage/storage-client
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.home: /Users/benjaminran
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.language: en
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.name: benjaminran
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - user.timezone: America/Los_Angeles
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]#aws:
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - spring.profiles: aws
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: https://virginia.cloud.icgc.org
-2016-10-19 12:16:12.218  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :          applicationConfig: [classpath:/application.yml]:
-2016-10-19 12:16:12.219  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.accessToken: ${accessToken}
-2016-10-19 12:16:12.219  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ansi: ${ansi:true}
-2016-10-19 12:16:12.219  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.connectTimeoutSeconds: 60
-2016-10-19 12:16:12.219  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.quiet: ${quiet:false}
-2016-10-19 12:16:12.219  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.readTimeoutSeconds: 60
-2016-10-19 12:16:12.219  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.silent: ${silent:false}
-2016-10-19 12:16:12.219  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - client.ssl.custom: false
-2016-10-19 12:16:12.219  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - logging.file: target/logs/client.log
-2016-10-19 12:16:12.219  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.ssl.enabled: true
-2016-10-19 12:16:12.220  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - metadata.url: https://meta.icgc.org
-2016-10-19 12:16:12.220  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - mount.logging: false
-2016-10-19 12:16:12.220  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - portal.url: https://dcc.icgc.org
-2016-10-19 12:16:12.220  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryNumber: 10
-2016-10-19 12:16:12.220  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.retryTimeout: 1
-2016-10-19 12:16:12.220  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - storage.url: http://localhost:5431
-2016-10-19 12:16:12.220  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.fileFrom: memory
-2016-10-19 12:16:12.220  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.memory: 1
-2016-10-19 12:16:12.220  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       :             - transport.parallel: 6
-2016-10-19 12:16:12.221  INFO 93026 --- [main] o.i.d.s.client.config.ClientBanner       : ----------------------------------------------------------------------------------------------------
-
-
-2016-10-19 12:16:12.255 ERROR 93026 --- [main] org.icgc.dcc.storage.client.ClientMain   : Bad parameter(s): 
-
-com.beust.jcommander.ParameterException: Invalid option: --manifest: /var/folders/c0/jp63vlj10zs2nkjvf41xwl6h0000gp/T/tmp.aKiRa1sS/manifest/B0A2363D-08C1-4FE6-9CC7-BED21C99EAC7/manifest.txt does not exist
-	at org.icgc.dcc.storage.client.cli.FileValidator.parameterException(FileValidator.java:40) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:32) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.cli.FileValidator.validate(FileValidator.java:27) ~[icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:285) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.validateValueParameter(ParameterDescription.java:275) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:242) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.ParameterDescription.addValue(ParameterDescription.java:209) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:875) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.processFixedArity(JCommander.java:857) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:725) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parseValues(JCommander.java:791) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:282) ~[jcommander-1.48.jar!/:na]
-	at com.beust.jcommander.JCommander.parse(JCommander.java:265) ~[jcommander-1.48.jar!/:na]
-	at org.icgc.dcc.storage.client.ClientMain.parseParams(ClientMain.java:172) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.icgc.dcc.storage.client.ClientMain.run(ClientMain.java:129) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:806) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:790) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:777) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134) [spring-boot-1.3.3.RELEASE.jar!/:1.3.3.RELEASE]
-	at org.icgc.dcc.storage.client.ClientMain.main(ClientMain.java:108) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_77]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_77]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_77]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_77]
-	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:54) [icgc-storage-client.jar!/:1.0.14-SNAPSHOT]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
-
-2016-10-19 12:16:12.259  INFO 93026 --- [Thread-2] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@543ec7b5: startup date [Wed Oct 19 12:16:11 PDT 2016]; root of context hierarchy
