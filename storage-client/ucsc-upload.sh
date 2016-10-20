@@ -16,7 +16,7 @@ cp $* ${upload}
 # config
 metadata_server_url=https://storage.ucsc-cgl.org:8444
 storage_server_url=https://storage.ucsc-cgl.org:5431
-trust_store_path=../conf/ssl/cacerts
+trust_store_path=../ssl/artifacts/cacerts
 trust_store_pass=changeit
 
 # get accessToken
