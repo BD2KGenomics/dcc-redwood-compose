@@ -9,3 +9,5 @@ dcc-storage
 **/.idea
 # macos
 **/.DS_Store
+# docker
+images

@@ -8,7 +8,7 @@ RUN apt-get update
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 RUN apt-get install -y oracle-java8-installer
 
-RUN apt-get update && apt-get install uuid-runtime
+RUN apt-get update && apt-get install uuid-runtime && apt-get install curl
 
 # add dcc files
 ENV DCC_HOME /dcc
@@ -21,8 +21,7 @@ COPY ${DCC_ARCHIVE:-./artifacts/ucsc-storage-client-dist.tar.gz} $DCC_HOME/ucsc-
 RUN tar xf $DCC_HOME/ucsc-storage-client-dist.tar.gz
 ENV PATH $DCC_HOME/ucsc-storage-client/bin:$PATH
 
-ENV UCSC_STORAGE_METADATA_SERVER https://storage.ucsc-cgl.org:8444
-ENV UCSC_STORAGE_STORAGE_SERVER https://storage.ucsc-cgl.org:5431
+ENV REDWOOD_ENDPOINT storage.ucsc-cgl.org
+ENV UCSC_STORAGE_METADATA_SERVER https://${REDWOOD_ENDPOINT}:8444
+ENV UCSC_STORAGE_STORAGE_SERVER https://${REDWOOD_ENDPOINT}:5431
 ENV UCSC_STORAGE_TRUSTSTORE_PASSWORD=changeit
-
-RUN echo 198.168.99.100 > /etc/hosts

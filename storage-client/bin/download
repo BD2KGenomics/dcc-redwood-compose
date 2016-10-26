@@ -14,7 +14,7 @@
 accessToken=${ACCESS_TOKEN}
 metadata_server_url=${UCSC_STORAGE_METADATA_SERVER}
 storage_server_url=${UCSC_STORAGE_STORAGE_SERVER}
-trust_store_path=${DCC_HOME}/conf/cacerts
+trust_store_path=${DCC_HOME}/ucsc-storage-client/conf/cacerts
 trust_store_pass=${UCSC_STORAGE_TRUSTSTORE_PASSWORD}
 
 # setup
