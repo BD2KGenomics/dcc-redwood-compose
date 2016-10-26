@@ -33,11 +33,4 @@ The servers only listen for https connections and expect requests to come via on
 
 The self-signed SSL certificate they all use has common name _storage.ucsc-cgl.org_. The rest of the URLs are listed as SubjectAltNames.
 
-To generate new ssl certificates:
-```
-openssl req -x509 -newkey rsa:2048 -nodes -subj '/C=US/ST=CA/L=Santa Cruz/O=UCSC/OU=Genomics/CN=storage.ucsc-cgl.org/emailAddress=genomics-group@ucsc.edu/subjectAltName=DNS.1=ucsc-auth-server,DNS.2=ucsc-metadata-server' -days 1000 -keyout storage.ucsc-cgl.org.key -out storage.ucsc-cgl.org.crt
-openssl pkcs12 -inkey storage.ucsc-cgl.org.key -in storage.ucsc-cgl.org.crt -export -out storage.ucsc-cgl.org.p12
-# enter password to use for outputted pkcs keystore
-keytool -delete -keystore cacerts -storepass changeit -alias storage.ucsc-cgl.org
-keytool -importkeystore -srckeystore storage.ucsc-cgl.org.p12 -srcstoretype pkcs12 -destkeystore storage.ucsc-cgl.org.jks -deststoretype jks -deststorepass password
-```
+To generate new ssl certificates, see the `ssl` directory.
