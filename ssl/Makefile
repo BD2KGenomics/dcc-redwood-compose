@@ -19,6 +19,7 @@ all: ${JKS} trust
 
 artifacts.tar.gz: ${JKS} trust
 	tar czf artifacts.tar.gz artifacts
+	mv artifacts.tar.gz artifacts
 
 ${JKS}: jks
 
