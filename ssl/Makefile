@@ -8,10 +8,12 @@ CSR=artifacts/${NAME}.csr
 CRT=artifacts/${NAME}.crt
 PKCS12=artifacts/${NAME}.p12
 JKS=artifacts/${NAME}.jks
-TRUST=artifacts/cacerts
+SERVER_TRUST=artifacts/cacerts
+CLIENT_TRUST=artifacts/clientcacerts
 
 PASSWORD=password
-TRUST_PASSWORD=changeit
+SERVER_TRUST_PASSWORD=changeit
+CLIENT_TRUST_PASSWORD=foobar
 
 all: ${JKS} trust
 
@@ -53,8 +55,8 @@ view_pkcs12: ${PKCS12}
 view_jks: ${JKS}
 	keytool -list -keystore ${JKS} -storepass ${PASSWORD} -v
 
-trust: ${TRUST} ${CRT}
-	keytool -import -trustcacerts -keystore ${TRUST} -storepass ${TRUST_PASSWORD} -alias ${NAME} -file ${CRT}
-
-${TRUST}: cacerts.raw artifacts
-	cp cacerts.raw ${TRUST}
+trust: ${CRT} cacerts.raw artifacts
+	cp cacerts.raw ${SERVER_TRUST}
+	keytool -import -trustcacerts -keystore ${SERVER_TRUST} -storepass ${SERVER_TRUST_PASSWORD} -alias ${NAME} -file ${CRT}
+	cp ${SERVER_TRUST} ${CLIENT_TRUST}
+	keytool -storepasswd -keystore ${CLIENT_TRUST} -storepass ${SERVER_TRUST_PASSWORD} -new ${CLIENT_TRUST_PASSWORD}
