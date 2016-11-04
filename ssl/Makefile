@@ -17,6 +17,9 @@ CLIENT_TRUST_PASSWORD=password3
 
 all: ${JKS} trust
 
+artifacts.tar.gz: ${JKS} trust
+	tar czf artifacts.tar.gz artifacts
+
 ${JKS}: jks
 
 jks: ${PKCS12}
