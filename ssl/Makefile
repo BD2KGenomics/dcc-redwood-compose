@@ -11,9 +11,9 @@ JKS=artifacts/${NAME}.jks
 SERVER_TRUST=artifacts/cacerts
 CLIENT_TRUST=artifacts/clientcacerts
 
-PASSWORD=password
-SERVER_TRUST_PASSWORD=changeit
-CLIENT_TRUST_PASSWORD=foobar
+PASSWORD=password1
+SERVER_TRUST_PASSWORD=password2
+CLIENT_TRUST_PASSWORD=password3
 
 all: ${JKS} trust
 
@@ -57,6 +57,7 @@ view_jks: ${JKS}
 
 trust: ${CRT} cacerts.raw artifacts
 	cp cacerts.raw ${SERVER_TRUST}
-	keytool -import -trustcacerts -keystore ${SERVER_TRUST} -storepass ${SERVER_TRUST_PASSWORD} -alias ${NAME} -file ${CRT}
+	keytool -import -trustcacerts -keystore ${SERVER_TRUST} -storepass changeit -alias ${NAME} -file ${CRT}
+	keytool -storepasswd -keystore ${SERVER_TRUST} -storepass changeit -new ${SERVER_TRUST_PASSWORD}
 	cp ${SERVER_TRUST} ${CLIENT_TRUST}
 	keytool -storepasswd -keystore ${CLIENT_TRUST} -storepass ${SERVER_TRUST_PASSWORD} -new ${CLIENT_TRUST_PASSWORD}
