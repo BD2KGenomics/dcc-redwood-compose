@@ -2,9 +2,7 @@
 *#
 *~
 # project-specific
-dcc-auth
-dcc-metadata
-dcc-storage
+**/artifacts
 # intellij
 **/.idea
 # macos
