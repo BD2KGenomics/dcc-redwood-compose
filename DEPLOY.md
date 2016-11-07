@@ -81,6 +81,6 @@ If available, get the existing storage system ssl certificates (JKS and PKCS12) 
 
 Prepare the system.
 - `mkdir -p ~/redwood/dcc-auth && mkdir ~/redwood/dcc-metadata && mkdir ~/redwood/dcc-storage`
-- add `export DCC_HOME=~/redwood` to your ~/.bash_profile and `source ~/.bash_profile`.
+- add `export DCC_HOME=~/redwood` to your ~/.bash_profile (and `source ~/.bash_profile`).
 - Install docker and docker-compose
 

@@ -9,8 +9,14 @@ The certificate is generated using the x509v3 _subjectAltNames_ extension to acc
 In order to generate a private key and certificate in all the required formats, just run `make`.
 
 
-## Passwords
-The existing setup uses the passwords specified in the Makefile to non-interactively generate all certificate variants.
+## Usage
+On a secure computer not publicly accessible from the internet:
+- Clone the project
+- Edit the makefile to contain the production passwords-to-be
+  - You can also specify additional subjectAltNames in _openssl-cgl.cfg_.
+- run `make` to generate the following:
+  - _artifacts/serverssl.tar.gz_ - bundle containing ssl certificate/key in JKS and PKCS12 as well as a JVM truststore for use in the Redwood servers
+  - _artifacts/clientssl.tar.gz_ - bundle containing JVM truststore for use in the Redwood client
 
 
 ## Resources

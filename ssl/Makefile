@@ -1,67 +1,93 @@
-#
-# Not for general use; read the commands before running
-#
-
 NAME=storage.ucsc-cgl.org
-KEY=artifacts/${NAME}.key
-CSR=artifacts/${NAME}.csr
-CRT=artifacts/${NAME}.crt
-PKCS12=artifacts/${NAME}.p12
-JKS=artifacts/${NAME}.jks
-SERVER_TRUST=artifacts/cacerts
-CLIENT_TRUST=artifacts/clientcacerts
+
+ARTIFACTS=artifacts
+
+KEY=${NAME}.key
+CSR=${NAME}.csr
+CRT=${NAME}.crt
+PKCS12=${NAME}.p12
+JKS=${NAME}.jks
+SERVER_TRUST=cacerts
+CLIENT_TRUST=clientcacerts
+
+SERVER_BUNDLE=serverssl.tar.gz
+CLIENT_BUNDLE=clientssl.tar.gz
 
 PASSWORD=password1
 SERVER_TRUST_PASSWORD=password2
 CLIENT_TRUST_PASSWORD=password3
 
-all: ${JKS} trust
 
-artifacts.tar.gz: ${JKS} trust
-	tar czf artifacts.tar.gz artifacts
-	mv artifacts.tar.gz artifacts
+all: server client
 
-${JKS}: jks
 
-jks: ${PKCS12}
-	keytool -importkeystore -srckeystore ${PKCS12} -srcstoretype pkcs12 -srcstorepass ${PASSWORD} -destkeystore ${JKS} -deststoretype jks -deststorepass ${PASSWORD}
+server: ${ARTIFACTS}/${SERVER_BUNDLE}
 
-${PKCS12}: pkcs12
+${ARTIFACTS}/${SERVER_BUNDLE}: ${ARTIFACTS}/${JKS} ${ARTIFACTS}/${PKCS12} ${ARTIFACTS}/${CLIENT_TRUST}
+	tar czfC ${ARTIFACTS}/${SERVER_BUNDLE} ${ARTIFACTS} ${JKS} ${PKCS12} ${SERVER_TRUST}
 
-pkcs12: ${CRT}
-	openssl pkcs12 -inkey ${KEY} -passin pass:${PASSWORD} -in ${CRT} -export -out ${PKCS12}  -passout pass:${PASSWORD}
 
-${CRT}: crt
+client: ${ARTIFACTS}/${CLIENT_BUNDLE}
 
-crt: ${CSR}
-	openssl x509 -signkey ${KEY} -passin pass:${PASSWORD} -in ${CSR} -req -days 365 -out ${CRT} -extfile openssl-cgl.cfg -extensions v3_req
+${ARTIFACTS}/${CLIENT_BUNDLE}: ${ARTIFACTS}/${CLIENT_TRUST}
+	tar czfC ${ARTIFACTS}/${CLIENT_BUNDLE} ${ARTIFACTS} ${CLIENT_TRUST}
 
-${CSR}: csr
 
-csr: artifacts
-	openssl req -new -out ${CSR} -newkey rsa:4096 -keyout ${KEY} -passout pass:${PASSWORD} -config openssl-cgl.cfg
+jks: ${ARTIFACTS}/${JKS}
 
-artifacts:
-	mkdir artifacts
+${ARTIFACTS}/${JKS}: ${ARTIFACTS}/${PKCS12}
+	keytool -importkeystore -srckeystore ${ARTIFACTS}/${PKCS12} -srcstoretype pkcs12 -srcstorepass ${PASSWORD} -destkeystore ${ARTIFACTS}/${JKS} -deststoretype jks -deststorepass ${PASSWORD}
+
+
+pkcs12: ${ARTIFACTS}/${PKCS12}
+
+${ARTIFACTS}/${PKCS12}: ${ARTIFACTS}/${CRT}
+	openssl pkcs12 -inkey ${ARTIFACTS}/${KEY} -passin pass:${PASSWORD} -in ${ARTIFACTS}/${CRT} -export -out ${ARTIFACTS}/${PKCS12}  -passout pass:${PASSWORD}
+
+
+crt: ${ARTIFACTS}/${CRT}
+
+${ARTIFACTS}/${CRT}: ${ARTIFACTS}/${CSR}
+	openssl x509 -signkey ${ARTIFACTS}/${KEY} -passin pass:${PASSWORD} -in ${ARTIFACTS}/${CSR} -req -days 365 -out ${ARTIFACTS}/${CRT} -extfile openssl-cgl.cfg -extensions v3_req
+
+
+csr: ${ARTIFACTS}/${CSR}
+
+${ARTIFACTS}/${CSR}: ${ARTIFACTS}
+	openssl req -new -out ${ARTIFACTS}/${CSR} -newkey rsa:4096 -keyout ${ARTIFACTS}/${KEY} -passout pass:${PASSWORD} -config openssl-cgl.cfg
+
+
+${ARTIFACTS}:
+	mkdir -p ${ARTIFACTS}
+
 
 clean:
-	- rm -r artifacts
+	- rm -r ${ARTIFACTS}
 
-view_csr: ${CSR}
-	openssl req -text -noout -verify -in ${CSR}
 
-view_crt: ${CRT}
-	openssl x509 -text -noout -in ${CRT}
+view_csr: ${ARTIFACTS}/${CSR}
+	openssl req -text -noout -verify -in ${ARTIFACTS}/${CSR}
 
-view_pkcs12: ${PKCS12}
-	keytool -list -keystore ${PKCS12} -storepass ${PASSWORD} -storetype pkcs12 -v
 
-view_jks: ${JKS}
-	keytool -list -keystore ${JKS} -storepass ${PASSWORD} -v
+view_crt: ${ARTIFACTS}/${CRT}
+	openssl x509 -text -noout -in ${ARTIFACTS}/${CRT}
 
-trust: ${CRT} cacerts.raw artifacts
-	cp cacerts.raw ${SERVER_TRUST}
-	keytool -import -trustcacerts -keystore ${SERVER_TRUST} -storepass changeit -alias ${NAME} -file ${CRT}
-	keytool -storepasswd -keystore ${SERVER_TRUST} -storepass changeit -new ${SERVER_TRUST_PASSWORD}
-	cp ${SERVER_TRUST} ${CLIENT_TRUST}
-	keytool -storepasswd -keystore ${CLIENT_TRUST} -storepass ${SERVER_TRUST_PASSWORD} -new ${CLIENT_TRUST_PASSWORD}
+
+view_pkcs12: ${ARTIFACTS}/${PKCS12}
+	keytool -list -keystore ${ARTIFACTS}/${PKCS12} -storepass ${PASSWORD} -storetype pkcs12 -v
+
+
+view_jks: ${ARTIFACTS}/${JKS}
+	keytool -list -keystore ${ARTIFACTS}/${JKS} -storepass ${PASSWORD} -v
+
+
+${ARTIFACTS}/${SERVER_TRUST}: trust
+
+${ARTIFACTS}/${CLIENT_TRUST}: trust
+
+trust: ${ARTIFACTS}/${CRT} cacerts.raw artifacts
+	cp cacerts.raw ${ARTIFACTS}/${SERVER_TRUST}
+	keytool -import -noprompt -trustcacerts -keystore ${ARTIFACTS}/${SERVER_TRUST} -storepass changeit -alias ${NAME} -file ${ARTIFACTS}/${CRT}
+	keytool -storepasswd -keystore ${ARTIFACTS}/${SERVER_TRUST} -storepass changeit -new ${SERVER_TRUST_PASSWORD}
+	cp ${ARTIFACTS}/${SERVER_TRUST} ${ARTIFACTS}/${CLIENT_TRUST}
+	keytool -storepasswd -keystore ${ARTIFACTS}/${CLIENT_TRUST} -storepass ${SERVER_TRUST_PASSWORD} -new ${CLIENT_TRUST_PASSWORD}
