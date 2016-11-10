@@ -9,11 +9,12 @@ services:
     - "8000:8000"
     volumes:
     - ./conf/wrapper.auth.conf:/dcc/dcc-auth-server/conf/wrapper.conf
-    - ./../ssl/artifacts:/dcc/conf/ssl
+    - ${REDWOOD_HOME}/ssl/:/dcc/ssl/
     environment:
     - UCSC_STORAGE_AUTH_DB=jdbc:postgresql://ucsc-auth-db
     - UCSC_STORAGE_TRUSTSTORE_PASSWORD=${TRUSTSTORE_PASSWORD}
     - UCSC_STORAGE_KEYSTORE_PASSWORD=${KEYSTORE_PASSWORD}
+    - UCSC_STORAGE_AUTH_ADMIN_PASSWORD=${AUTH_ADMIN_PASSWORD}
     depends_on:
       - ucsc-auth-db
   ucsc-auth-db:
@@ -35,7 +36,7 @@ services:
     - "8001:8000"
     volumes:
     - ./conf/wrapper.metadata.conf:/dcc/dcc-metadata-server/conf/wrapper.conf
-    - ./../ssl/artifacts:/dcc/conf/ssl
+    - ${REDWOOD_HOME}/ssl/:/dcc/ssl
     environment:
     - UCSC_STORAGE_METADATA_DB=mongodb://ucsc-metadata-db:27017
     - UCSC_STORAGE_TRUSTSTORE_PASSWORD=${TRUSTSTORE_PASSWORD}
@@ -59,7 +60,7 @@ services:
     - "8002:8000"
     volumes:
     - ./conf/wrapper.storage.conf:/dcc/dcc-storage-server/conf/wrapper.conf
-    - ./../ssl/artifacts:/dcc/conf/ssl
+    - ${REDWOOD_HOME}/ssl/:/dcc/ssl
     environment:
     - UCSC_STORAGE_TRUSTSTORE_PASSWORD=${TRUSTSTORE_PASSWORD}
     - UCSC_STORAGE_KEYSTORE_PASSWORD=${KEYSTORE_PASSWORD}
@@ -68,10 +69,10 @@ services:
     - UCSC_STORAGE_METADATA_SERVER=https://ucsc-metadata-server:8444
     - UCSC_STORAGE_STORAGE_CLIENT_ID=storage
     - UCSC_STORAGE_STORAGE_CLIENT_SECRET=${STORAGE_CLIENT_SECRET}
-    - UCSC_STORAGE_AWS_ACCESS_KEY=AKIAJHJOHQLZFOXLADWA
-    - UCSC_STORAGE_AWS_SECRET_KEY=${AWS_SECRET_KEY}
     - UCSC_STORAGE_AWS_ENCRYPTION_KEY_ID=38a0e264-f28e-469f-86aa-c87dbfec3270
     - UCSC_STORAGE_S3_ENDPOINT=s3-us-west-2.amazonaws.com
+    - UCSC_STORAGE_AWS_ACCESS_KEY=mykey
+    - UCSC_STORAGE_AWS_SECRET_KEY=${AWS_SECRET_KEY}
     depends_on:
     - ucsc-auth-server
     - ucsc-metadata-server

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+
 #
 # Usage: ucsc-upload.sh dataFile...
 #

@@ -1,6 +1,9 @@
 # UCSC Storage Client
 
-## Usage
+## Docker
+`make docker` builds the _ucsc-storage-server_ docker image.
+
+### Usage
 ```
 docker run --rm -e ACCESS_TOKEN=<your-access-token> \
 -e REDWOOD_ENDPOINT=storage.ucsc-cgl.org \
@@ -12,7 +15,7 @@ $ upload /data/foo.txt /data/bar.txt
 
 ### Configuration
 For normal usage, you should only need to modify environment variables.
-- ACCESS_TOKEN: you access token
+- ACCESS_TOKEN: your access token
   - should look like _7d426b9f-7ff5-4850-85d7-1c795f4e11e0_
 - REDWOOD_ENDPOINT: hostname (or IP) of server running storage service
   - This defaults to _storage.ucsc-cgl.org_

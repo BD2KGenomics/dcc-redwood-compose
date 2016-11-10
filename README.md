@@ -10,12 +10,12 @@ This project expects that `ucsc-storage-server`, `ucsc-metadata-server`, and `uc
 You'll also want to make a `.env` file in the `storage-service` directory with contents like the following:
 
 ```
-TRUSTSTORE_PASSWORD=<your_truststore_password>
-KEYSTORE_PASSWORD=<your_keystore_password>
-METADATA_CLIENT_SECRET=<your_metadata_server_client_secret>
-STORAGE_CLIENT_SECRET=<your_storage_server_client_secret>
-AUTH_DB_PASSWORD=<your_postgres_password>
-AWS_SECRET_KEY=<your_aws_secret_key>
+TRUSTSTORE_PASSWORD=password2
+KEYSTORE_PASSWORD=password1
+METADATA_CLIENT_SECRET=pass
+STORAGE_CLIENT_SECRET=pass
+AUTH_DB_PASSWORD=password
+AUTH_ADMIN_PASSWORD=secret
 ```
 
 Also, look through the environment variables defined in `docker-compose.yml` and update values where necessary.
