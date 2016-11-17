@@ -8,7 +8,7 @@ archive: build
 
 build: artifacts
 	- mkdir -p artifacts/${NAME}/conf
-	cp ../ssl/artifacts/cacerts artifacts/${NAME}/conf/cacerts
+	cp cacerts artifacts/${NAME}/conf/cacerts
 	cp -r bin artifacts/${NAME}/bin
 	cp -r lib artifacts/${NAME}/lib
 

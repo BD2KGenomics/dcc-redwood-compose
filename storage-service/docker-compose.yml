@@ -8,8 +8,7 @@ services:
     - "8543:8543"
     - "8000:8000"
     volumes:
-    - ./conf/wrapper.auth.conf:/dcc/dcc-auth-server/conf/wrapper.conf
-    - ./../ssl/artifacts:/dcc/conf/ssl
+    - ./conf/wrapper.auth.conf:/dcc/conf/wrapper.conf
     environment:
     - UCSC_STORAGE_AUTH_DB=jdbc:postgresql://ucsc-auth-db
     - UCSC_STORAGE_TRUSTSTORE_PASSWORD=${TRUSTSTORE_PASSWORD}
@@ -19,8 +18,6 @@ services:
   ucsc-auth-db:
     container_name: ucsc-auth-db
     image: postgres
-    ports:
-    - "5432:5432"
     environment:
     - POSTGRES_PASSWORD=${AUTH_DB_PASSWORD}
     volumes:
@@ -34,8 +31,7 @@ services:
     - "8544:8544"
     - "8001:8000"
     volumes:
-    - ./conf/wrapper.metadata.conf:/dcc/dcc-metadata-server/conf/wrapper.conf
-    - ./../ssl/artifacts:/dcc/conf/ssl
+    - ./conf/wrapper.metadata.conf:/dcc/conf/wrapper.conf
     environment:
     - UCSC_STORAGE_METADATA_DB=mongodb://ucsc-metadata-db:27017
     - UCSC_STORAGE_TRUSTSTORE_PASSWORD=${TRUSTSTORE_PASSWORD}
@@ -49,8 +45,6 @@ services:
   ucsc-metadata-db:
     container_name: ucsc-metadata-db
     image: mongo
-    ports:
-    - "27017:27017"
   ucsc-storage-server:
     container_name: ucsc-storage-server
     image: ucsc-storage-server
@@ -58,8 +52,8 @@ services:
     - "5431:5431"
     - "8002:8000"
     volumes:
-    - ./conf/wrapper.storage.conf:/dcc/dcc-storage-server/conf/wrapper.conf
-    - ./../ssl/artifacts:/dcc/conf/ssl
+    - ./conf/application.storage.properties:/dcc/conf/application.properties
+    - /Users/benjaminran/.aws/credentials:/root/.aws/credentials
     environment:
     - UCSC_STORAGE_TRUSTSTORE_PASSWORD=${TRUSTSTORE_PASSWORD}
     - UCSC_STORAGE_KEYSTORE_PASSWORD=${KEYSTORE_PASSWORD}

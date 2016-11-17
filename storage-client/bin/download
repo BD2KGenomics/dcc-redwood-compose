@@ -6,14 +6,13 @@
 
 : "${DCC_HOME:?Need to set environment variable DCC_HOME}"
 : "${ACCESS_TOKEN:?Need to set environment variable ACCESS_TOKEN}"
-: "${UCSC_STORAGE_METADATA-SERVER:?Need to set environment variable UCSC_STORAGE_METADATA_SERVER}"
-: "${UCSC_STORAGE_STORAGE_SERVER:?Need to set environment variable UCSC_STORAGE_STORAGE_SERVER}"
+: "${REDWOOD_ENDPOINT:?Set environment variable REDWOOD_ENDPOINT to e.g. storage.ucsc-cgl.org}"
 : "${UCSC_STORAGE_TRUSTSTORE_PASSWORD:?Need to set environment variable UCSC_STORAGE_TRUSTSTORE_PASSWORD}"
 
 # config
 accessToken=${ACCESS_TOKEN}
-metadata_server_url=${UCSC_STORAGE_METADATA_SERVER}
-storage_server_url=${UCSC_STORAGE_STORAGE_SERVER}
+metadata_server_url=https://${REDWOOD_ENDPOINT}:8444
+storage_server_url=https://${REDWOOD_ENDPOINT}:5431
 trust_store_path=${DCC_HOME}/ucsc-storage-client/conf/cacerts
 trust_store_pass=${UCSC_STORAGE_TRUSTSTORE_PASSWORD}
 
