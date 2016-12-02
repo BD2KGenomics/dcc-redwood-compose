@@ -1,4 +1,4 @@
-# ucsc-storage
+# dcc-redwood-storage
 ICGC Storage System Adapted for UCSC in Docker Compose
 
 ## Overview
