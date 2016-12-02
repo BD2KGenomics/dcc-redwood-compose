@@ -1,12 +1,4 @@
-# emacs
-*#
-*~
-# project-specific
-**/artifacts
-**/artifacts.tar.gz
-# intellij
+**/.env
 **/.idea
-# macos
-**/.DS_Store
-# docker
-images
+**/*~
+**/*#
