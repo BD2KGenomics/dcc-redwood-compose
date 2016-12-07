@@ -16,3 +16,5 @@ cd dcc-auth && mvn && tar xvf dcc-auth-server/target/*-dist.tar.gz && docker bui
 ```
 
 Then you can start the system with: `docker-compose up` and stop it with `docker-compose down`.
+
+_Note:_ A `~/.aws/credentials` file is assumed by `docker-compose.yml` to exist on the host.
