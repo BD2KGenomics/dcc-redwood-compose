@@ -12,8 +12,6 @@ services:
   ucsc-auth-db:
     container_name: ucsc-auth-db
     image: postgres
-    environment:
-    - POSTGRES_PASSWORD=${AUTH_DB_PASSWORD}
     volumes:
     - ./conf/auth-schema-postgresql.sql:/docker-entrypoint-initdb.d/dcc-auth-db.sql
     - ./conf/pg_hba.conf:/etc/postgres/9.6/main/pg_hba.conf

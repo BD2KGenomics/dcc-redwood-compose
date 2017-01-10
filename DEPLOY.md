@@ -81,4 +81,24 @@ Point your domain to your load balancer
   - Alias: Yes
   - Alias Target: redwood elb
 
+Locally build the _dcc-auth_, _dcc-metadata_, and _dcc-storage_ projects into their respective _*-dist.tar.gz_ files
+- see this project's _README.md_
+
+Copy and extract these archives to the ec2, then build the docker images of each of these
+- see this project's _README.md_
+
+Copy or clone this project (_dcc-redwood-compose_) over to the the ec2
+- `git clone git@github.com:BD2KGenomics/dcc-redwood-compose.git`
+
+Update _conf/application.storage.properties_
+- s3.accessKey: your _redwood_ IAM user's access key
+- s3.secretKey: your _redwood_ IAM user's secret key
+- s3.masterEncryptionKeyId: the id of your KMS key
+- s3.endpoint: the s3 endpoint to use (depends on your s3 bucket region)
+- bucket.name.object: your s3 bucket's name
+- server.ssl.key-store-password: the password to your server's ssl keystore
+
+Run the system
+- `docker-compose up -d`
+
 You're done! At this point you should be able to upload and download data from redwood.
