@@ -1,10 +1,7 @@
 # Deploy Guide
+This is a guide for deploying Redwood to production on AWS.
 
-## Overview
-This is a guide for deploying Redwood to production. Italicized names should be substituted as appropriate.
-
-### From Scratch
-Create buckets, ec2, encryption key, etc. in the same region.
+_Note:_ Create bucket, ec2, encryption key, etc. in the same region.
 - Region: Oregon (us-west-2)
 
 Create the storage system S3 bucket (with logging enabled). This will hold all the storage system data.
