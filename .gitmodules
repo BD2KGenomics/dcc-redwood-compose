@@ -1,0 +1,9 @@
+[submodule "dcc-storage"]
+	path = dcc-storage
+	url = https://github.com/BD2KGenomics/dcc-storage.git
+[submodule "dcc-metadata"]
+	path = dcc-metadata
+	url = https://github.com/BD2KGenomics/dcc-metadata.git
+[submodule "dcc-auth"]
+	path = dcc-auth
+	url = https://github.com/BD2KGenomics/dcc-auth.git
