@@ -33,9 +33,6 @@ Set up the server's security group (_redwood-server_)
 Connect to the EC2.
 - `ssh ec2-user@35.162.230.56`
 
-Get the existing storage system ssl certificates (JKS and PKCS12) from an administrator and scp them to the ec2.
-- `scp artifacts.tar.gz ec2-user@35.162.230.56:~/redwood/`
-
 Prepare the system.
 - `mkdir -p ~/redwood/dcc-auth && mkdir ~/redwood/dcc-metadata && mkdir ~/redwood/dcc-storage`
 - add `export DCC_HOME=~/redwood` to your ~/.bash_profile (and `source ~/.bash_profile`).
