@@ -1,42 +1,42 @@
 version: '2'
 services:
-  ucsc-auth-server:
-    container_name: ucsc-auth-server
-    image: ucsc-auth-server
+  redwood-auth-server:
+    container_name: redwood-auth-server
+    image: redwood-auth-server
     ports:
     - "8443:8443"
     - "8543:8543"
-    - "8000:8000"
+#    - "8000:8000"
     depends_on:
-      - ucsc-auth-db
-  ucsc-auth-db:
-    container_name: ucsc-auth-db
+      - redwood-auth-db
+  redwood-auth-db:
+    container_name: redwood-auth-db
     image: postgres
     volumes:
     - ./conf/auth-schema-postgresql.sql:/docker-entrypoint-initdb.d/dcc-auth-db.sql
     - ./conf/pg_hba.conf:/etc/postgres/9.6/main/pg_hba.conf
-  ucsc-metadata-server:
-    container_name: ucsc-metadata-server
-    image: ucsc-metadata-server
+  redwood-metadata-server:
+    container_name: redwood-metadata-server
+    image: redwood-metadata-server
     ports:
     - "8444:8444"
     - "8544:8544"
-    - "8001:8000"
+#    - "8001:8000"
     depends_on:
-    - ucsc-metadata-db
-    - ucsc-auth-server
-  ucsc-metadata-db:
-    container_name: ucsc-metadata-db
+    - redwood-metadata-db
+    - redwood-auth-server
+  redwood-metadata-db:
+    container_name: redwood-metadata-db
     image: mongo
-  ucsc-storage-server:
-    container_name: ucsc-storage-server
-    image: ucsc-storage-server
+  redwood-storage-server:
+    container_name: redwood-storage-server
+    image: redwood-storage-server
     ports:
     - "5431:5431"
-    - "8002:8000"
+#    - "8002:8000"
     volumes:
     - ./conf/application.storage.properties:/dcc/conf/application.properties
     - ~/.aws/credentials:/root/.aws/credentials
     depends_on:
-    - ucsc-auth-server
-    - ucsc-metadata-server
+    - redwood-auth-server
+    - redwood-metadata-server
