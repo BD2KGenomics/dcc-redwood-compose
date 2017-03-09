@@ -1,6 +1,9 @@
 # dcc-redwood-compose
 ICGC Storage System Adapted for UCSC in Docker Compose
 
+## Deprecated
+Use [dcc-ops](https://github.com/BD2KGenomics/dcc-ops) instead.
+
 ## Overview
 This project runs the Redwood storage-server, metadata-server, and auth-server (closely based off of ICGC's storage system servers) as well as the MongoDB and PostgreSQL databases that the servers require.
 
